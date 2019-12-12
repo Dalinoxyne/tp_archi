@@ -32,6 +32,7 @@
 			$premiercomm=$commparpage*($page-1);
 			$req="SELECT * FROM comment ORDER BY id LIMIT $premiercomm,$commparpage";/* LIMIT dit ou je commence et combien j'en prends*/
 			$res=mysqli_query($lien,$req);
+			
 			if(!$res)
 			{
 				echo "erreur SQL:$req<br>".mysqli_error($lien);
@@ -58,9 +59,12 @@
 			{
 				echo "<p>Nombre total de commentaires :".$nbcomm."</p>";
 				echo "<br> Pages : ";
-				echo "<a href='commentaires.php?page=1'> << </a>";
-				echo "<a href='commentaires.php?page=".($page-1)."'> < </a>";
-			
+
+				if ($page >= 2) {
+					echo "<a href='commentaires.php?page=1'> << </a>";
+					echo "<a href='commentaires.php?page=".($page-1)."'> < </a>";
+				}
+
 				for($i=($page-2);$i<=($page+2);$i++) {
 
 					if ($i >= 1 & $i <= ($nbpages-1)){
@@ -75,15 +79,12 @@
 				}
 
 			}
-						
-				
 
+			if ($page <= ($nbpages-2)) {
+				echo "<a href='commentaires.php?page=".($page+1)."'> > </a>";
+				echo "<a href='commentaires.php?page=$nbpages'> >> </a>";
+			}
 
-
-			echo "<a href='commentaires.php?page=".($page+1)."'> > </a>";
-			echo "<a href='commentaires.php?page=$nbpages'> >> </a>";
-
-			
 			
 			mysqli_close($lien);
 		?>	
