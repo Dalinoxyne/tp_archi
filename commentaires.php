@@ -4,13 +4,15 @@
 		<meta charset="utf-8">
 	</head> 
 	<body>
+
 		<form method="POST">
 			<input type="text" name="nom" placeholder="Nom"><br>
 			<textarea name="contenu" placeholder="Commentaire"></textarea><br>
 			<input type="submit" value="Envoyer" name="envoyer">
 		</form>
+
 		<?php
-			$lien=mysqli_connect("localhost","root","root","tp");
+			$lien=mysqli_connect("localhost","root","","tp_commentaires");
 			if(isset($_POST['envoyer']))
 			{
 				$nom=trim(htmlentities(mysqli_real_escape_string($lien,$_POST['nom'])));
@@ -56,8 +58,8 @@
 			}
 			else
 			{
-				$nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
-				$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
+				$nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un rÃ©sultat. 
+				$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supÃ©rieur*/
 				echo "<br> Pages : ";
 				echo "<a href='commentaires.php?page=1'> << </a>";
 				echo "<a href='commentaires.php?page=".($page-1)."'> < </a>";
@@ -70,4 +72,7 @@
 			echo "<a href='commentaires.php?page=$nbpages'> >> </a>";
 			
 			mysqli_close($lien);
-		?>																			
+		?>	
+		
+	</body>
+</html>
