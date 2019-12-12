@@ -5,14 +5,9 @@
 	</head> 
 	<body>
 
-		<form method="POST">
-			<input type="text" name="nom" placeholder="Nom"><br>
-			<textarea name="contenu" placeholder="Commentaire"></textarea><br>
-			<input type="submit" value="Envoyer" name="envoyer">
-		</form>
-
 		<?php
 			$lien=mysqli_connect("localhost","root","","tp_commentaires");
+
 			if(isset($_POST['envoyer']))
 			{
 				$nom=trim(htmlentities(mysqli_real_escape_string($lien,$_POST['nom'])));
@@ -59,20 +54,35 @@
 			else
 			{
 				$nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
+				echo "<p>Nombre total de commentaires :".$nbcomm."</p>";
 				$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
 				echo "<br> Pages : ";
 				echo "<a href='commentaires.php?page=1'> << </a>";
 				echo "<a href='commentaires.php?page=".($page-1)."'> < </a>";
-				for($i=($page-2);$i<=($page+2);$i++)
-				{
-					echo "<a href='commentaires.php?page=$i'> $i </a>";
-				}
+			
+					for($i=($page-2);$i<=($page+2);$i++) {
+						if($i == $page) {
+							echo "<strong>".$i."</strong>";
+						}
+						else {
+							echo "<a href='commentaires.php?page=$i'> $i </a>";
+						}
+					}
+					
 			}
 			echo "<a href='commentaires.php?page=".($page+1)."'> > </a>";
 			echo "<a href='commentaires.php?page=$nbpages'> >> </a>";
+
+			
 			
 			mysqli_close($lien);
 		?>	
 		
+		<form method="POST">
+			<input type="text" name="nom" placeholder="Nom"><br>
+			<textarea name="contenu" placeholder="Commentaire"></textarea><br>
+			<input type="submit" value="Envoyer" name="envoyer">
+		</form>
+
 	</body>
 </html>
