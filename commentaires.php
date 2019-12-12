@@ -47,20 +47,24 @@
 			
 			$req="SELECT * FROM comment";
 			$res=mysqli_query($lien,$req);
+			$nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
+			$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
+
 			if(!$res)
 			{
 				echo "Erreur SQL:$req<br>".mysqli_error($lien);
 			}
 			else
 			{
-				$nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
 				echo "<p>Nombre total de commentaires :".$nbcomm."</p>";
-				$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
 				echo "<br> Pages : ";
 				echo "<a href='commentaires.php?page=1'> << </a>";
 				echo "<a href='commentaires.php?page=".($page-1)."'> < </a>";
 			
-					for($i=($page-2);$i<=($page+2);$i++) {
+				for($i=($page-2);$i<=($page+2);$i++) {
+
+					if ($i >= 1 & $i <= ($nbpages-1)){
+
 						if($i == $page) {
 							echo "<strong>".$i."</strong>";
 						}
@@ -68,8 +72,14 @@
 							echo "<a href='commentaires.php?page=$i'> $i </a>";
 						}
 					}
-					
+				}
+
 			}
+						
+				
+
+
+
 			echo "<a href='commentaires.php?page=".($page+1)."'> > </a>";
 			echo "<a href='commentaires.php?page=$nbpages'> >> </a>";
 
