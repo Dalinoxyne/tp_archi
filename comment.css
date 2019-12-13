@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    padding: 3% 10%;
+}
+
+.comment {
+    background-color: rgb(158, 60, 137);
+    margin:1vh auto;
+    width: 90%;
+}
+
+.center {
+    text-align: center;
+}
+
+.text {
+    font-weight: 200;
+    font-size: 1rem;
+    color: white;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    margin-left: 5px;
+    font-size: 2rem;
+}
+
+p {
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+#pages {
+    margin: 1vh auto;
+    width: 100%;
+    text-align: center;
+}
+
+#pagination{
+    font-size: 1.5rem;
+    margin-top: 1vh;
+}
+
+strong {
+    color :rgb(141, 23, 115);
+    margin-left: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+a:hover {
+    color :rgb(158, 60, 137);
+}
+
+#form {
+    margin-top: 5%;
+    background-color :rgb(141, 23, 115);
+    padding: 3%;
+}
+
+input[type=text], textarea {
+    width: 100%;    
+}
+
+input[type=submit] {
+    margin: 1% 0 0 40%;
+    width: 15%;
+    height: 30px;
+}
+
+input[type=submit]:hover {
+    color: rgb(141, 23, 115) ;
+}
+
+label {
+    color: white;
+}

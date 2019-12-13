@@ -2,6 +2,9 @@
 <html>
 	<head> 
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="comment.css">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<title>Commentaires</title>
 	</head> 
 	<body>
 
@@ -28,7 +31,7 @@
 			{
 				$page=$_GET['page'];
 			}
-			$commparpage=3;
+			$commparpage=4;
 			$premiercomm=$commparpage*($page-1);
 			$req="SELECT * FROM comment ORDER BY id LIMIT $premiercomm,$commparpage";/* LIMIT dit ou je commence et combien j'en prends*/
 			$res=mysqli_query($lien,$req);
@@ -39,10 +42,11 @@
 			}
 			else
 			{
+				echo "<h1 class='center'>Commentaires d'Avengers Endgame</h1>";
 				while($tableau=mysqli_fetch_array($res))
 				{
-					echo "<h2>".$tableau['nom']."</h2>";
-					echo "<p>".$tableau['contenu']."</p>";
+					echo "<div class='comment'><h2>".$tableau['nom']." <span class='text'>a écrit :</span></h2>";
+					echo "<p>".$tableau['contenu']."</p></div>";
 				}
 			}
 			
@@ -51,23 +55,21 @@
 			$nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
 			$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
 
-			if(!$res)
-			{
+			if(!$res) {
 				echo "Erreur SQL:$req<br>".mysqli_error($lien);
 			}
-			else
-			{
-				echo "<p>Nombre total de commentaires :".$nbcomm."</p>";
-				echo "<br> Pages : ";
+			else {
+				echo "<div id='pages'>Page <b>".$page."</b>/".$nbpages;
+				echo "<div id='pagination'>";
 
 				if ($page >= 2) {
-					echo "<a href='commentaires.php?page=1'> << </a>";
-					echo "<a href='commentaires.php?page=".($page-1)."'> < </a>";
+					echo "<b><a href='commentaires.php?page=1'> << </a>";
+					echo "<a href='commentaires.php?page=".($page-1)."'> < </a></b>";
 				}
 
 				for($i=($page-2);$i<=($page+2);$i++) {
 
-					if ($i >= 1 & $i <= ($nbpages-1)){
+					if ($i >= 1 & $i <= $nbpages){
 
 						if($i == $page) {
 							echo "<strong>".$i."</strong>";
@@ -78,22 +80,26 @@
 					}
 				}
 
+				if ($page <= ($nbpages-1)) {
+					echo "<b><a href='commentaires.php?page=".($page+1)."'> > </a>";
+					echo "<a href='commentaires.php?page=$nbpages'> >> </a></b></div></div>";
+				}
+
 			}
 
-			if ($page <= ($nbpages-2)) {
-				echo "<a href='commentaires.php?page=".($page+1)."'> > </a>";
-				echo "<a href='commentaires.php?page=$nbpages'> >> </a>";
-			}
+			
 
 			
 			mysqli_close($lien);
 		?>	
-		
-		<form method="POST">
-			<input type="text" name="nom" placeholder="Nom"><br>
-			<textarea name="contenu" placeholder="Commentaire"></textarea><br>
-			<input type="submit" value="Envoyer" name="envoyer">
-		</form>
+		<div id="form">
+			<h2 class="center">Laissez votre avis :</h2>
+			<form method="POST">
+				<label>Votre nom : <br><input type="text" name="nom"></label><br>
+				<label>Votre commentaire : <br><textarea name="contenu"></textarea></label><br>
+				<input type="submit" value="Envoyer" name="envoyer">
+			</form>
+		</div>
 
 	</body>
 </html>
