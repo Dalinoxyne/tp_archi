@@ -42,7 +42,8 @@
 			}
 			else
 			{
-				echo "<h1 class='center'>Commentaires d'Avengers Endgame</h1>";
+				echo "<img src='affiche.png'>
+				<p id='synopsis'>Le Titan Thanos, ayant réussi à s'approprier les six Pierres d'Infinité et à les réunir sur le Gantelet doré, a pu réaliser son objectif de pulvériser la moitié de la population de l'Univers. Cinq ans plus tard, Scott Lang, alias Ant-Man, parvient à s'échapper de la dimension subatomique où il était coincé. Il propose aux Avengers une solution pour faire revenir à la vie tous les êtres disparus, dont leurs alliés et coéquipiers : récupérer les Pierres d'Infinité dans le passé.</p>";
 				while($tableau=mysqli_fetch_array($res))
 				{
 					echo "<div class='comment'><h2>".$tableau['nom']." <span class='text'>a écrit :</span></h2>";

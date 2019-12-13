@@ -5,13 +5,17 @@
 }
 
 body {
-    padding: 3% 10%;
+    padding: 2% 10%;
 }
 
 .comment {
-    background-color: rgb(158, 60, 137);
+    background-color: rgb(159, 148, 207);
     margin:1vh auto;
     width: 90%;
+}
+
+.comment:first-of-type {
+    margin-top: 30px;
 }
 
 .center {
@@ -33,6 +37,20 @@ h2 {
     font-size: 2rem;
 }
 
+img {
+    height: auto;
+    width: 100%;
+    margin:auto;
+}
+
+#synopsis {
+    font-style: italic;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-left: 0;
+    text-align: justify;
+}
+
 p {
     margin-left: 10px;
     font-size: 1.5rem;
@@ -50,7 +68,7 @@ p {
 }
 
 strong {
-    color :rgb(141, 23, 115);
+    color :rgb(122, 108, 184);
     margin-left: 10px;
 }
 
@@ -62,12 +80,12 @@ a {
 }
 
 a:hover {
-    color :rgb(158, 60, 137);
+    color :rgb(122, 108, 184);
 }
 
 #form {
     margin-top: 5%;
-    background-color :rgb(141, 23, 115);
+    background-color :rgb(122, 108, 184);
     padding: 3%;
 }
 
@@ -82,7 +100,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    color: rgb(141, 23, 115) ;
+    color: rgb(159, 148, 207) ;
 }
 
 label {
